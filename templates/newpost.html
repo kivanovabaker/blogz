@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylenewpost.css') }}">
+{% endblock %}
+
+{% block content %}
+    <header>
+        <h2>What's on Your Mind?</h2>
+    </header>
+    <main>
+        <form method="post">
+            <table>
+                <tr>
+                    <td><label for='title'>Title:</label></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="title" id="title" value="{{post_title}}"/></td>
+                </tr>
+                <tr>
+                    <td class="error">{{title_error}}</td>
+                </tr>
+                <tr>
+                    <td><label for='body'>Content:</label></td>
+                </tr>
+                    <td><textarea name='body' id='body'>{{body}}</textarea></td>
+                </tr>
+                <tr>
+                    <td class="error">{{body_error}}</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Post"/></td>
+                </tr>
+            </table>
+        </form>
+    </main>
+{% endblock %}

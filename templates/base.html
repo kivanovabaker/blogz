@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='normalize.css') }}">
+        {% block style %}
+        {% endblock %}
+    </head>
+    <body>
+        <a href="{{ url_for('blog')}}">Main Blog Page</a>
+        <a href="{{ url_for('newpost')}}">Add a Blog Entry</a>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
