@@ -8,16 +8,20 @@ app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
 class Blog(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique = True)
     body = db.Column(db.String(5000))
 
-    def __init__(self,title,body):
+    def __init__(self, title, body):
         self.title = title
         self.body = body
 
 @app.route('/blog', methods=['GET', 'POST'])
 def blog():
+    post_id = request.args.get('id')
+    if post_id:
+        ind_post = Blog.query.filter_by(id=post_id).first()
+        return render_template('ind_post.html', post=ind_post)
     posts = Blog.query.all()
     return render_template('blog.html', title = 'Thoughts and Musings', posts=posts)
 
@@ -39,10 +43,12 @@ def newpost():
             body_error = "Please enter content into your blog post."
 
         if not title_error and not body_error:
-            new_post = Blog(title,body)
+            new_post = Blog(title, body)
             db.session.add(new_post)
             db.session.commit()
-            return redirect('/blog')
+            new_post = Blog.query.filter_by(title=title).first()
+            post_id = new_post.id
+            return redirect('/blog?id={0}'.format(post_id))
         else:
             return render_template('newpost.html', title="What's on Your Mind?", post_title=title, body=body, 
             title_error=title_error, body_error=body_error)
