@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:foxes@localhost:8889/build-a-blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:foxes@localhost:8889/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
@@ -11,10 +11,22 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique = True)
     body = db.Column(db.String(5000))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, title, body):
+    def __init__(self, title, body, user):
         self.title = title
         self.body = body
+        self.user = user
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(40), unique=True)
+    password = db.Column(db.String(40))
+    blogs = db.relationship('Blog', backref='user')
+
+    def __init__(self, username,password):
+        self.username = username
+        self.password = password
 
 @app.route('/blog', methods=['GET', 'POST'])
 def blog():
@@ -28,6 +40,7 @@ def blog():
 @app.route('/newpost', methods=['GET', 'POST'])
 def newpost():
     if request.method == 'POST':
+        user = User.query.filter_by(username=session['username']).first()
         title = request.form['title']
         body = request.form['body']
         existing_title = Blog.query.filter_by(title=title).first()
@@ -43,7 +56,7 @@ def newpost():
             body_error = "Please enter content into your blog post."
 
         if not title_error and not body_error:
-            new_post = Blog(title, body)
+            new_post = Blog(title, body, user)
             db.session.add(new_post)
             db.session.commit()
             new_post = Blog.query.filter_by(title=title).first()
@@ -55,5 +68,8 @@ def newpost():
 
     return render_template('newpost.html', title="What's on Your Mind?")
 
+@app.route('/signup', methods['POST'])
+#@app.route('/login')
+#@app.route('/index')
 if __name__ == '__main__':
     app.run()
