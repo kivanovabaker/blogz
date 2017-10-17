@@ -1,4 +1,35 @@
+html { 
+    background: url("/static/images/felix-russell-saw-273938.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: #100101;
+  }
+
+main {
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputarea {
+    opacity: 0.7;
+}
+
+.button {
+    font-family: font-family: 'Raleway', sans-serif;
+    color: white;
+    padding: 15px 32px;
+    background-color: rgba(146, 181, 88, 0.83);
+    border-radius: 5px;
+    border: none;
+    text-shadow: none;
+}
 .error {
     color: red;
 }
+
+
 

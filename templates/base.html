@@ -3,16 +3,22 @@
     <head>
         <title>{{title}}</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='normalize.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylebase.css') }}">
         {% block style %}
         {% endblock %}
     </head>
     <body>
-        <a href='/'>Home</a>
-        <a href="blog">All Posts</a>
-        <a href="newpost">Add a Blog Entry</a>
-        <a href="login">Login</a>
-        <a href="logout">Logout</a>
-
+        <nav>
+            <ul>
+                <li><a href='/'>Home</a></li>
+                <li><a href="blog">All Posts</a></li>
+                <li><a href="newpost">Add a Blog Entry</a></li>
+            </ul>
+            <ul id="login-logout">
+                <li><a href="login">Login</a></li>
+                <li><a href="logout">Logout</a></li>
+            </ul>
+        </nav>
         {% with messages = get_flashed_messages(with_categories=True) %}
         <ul>
         {% for category,message in messages %}

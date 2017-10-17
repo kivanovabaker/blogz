@@ -1,0 +1,33 @@
+nav ul {
+    padding: 0;
+    margin: 10px;
+    list-style-type: none;
+    display: inline-block;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav #login-logout {
+    float: right;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 32px;
+    background-color: rgba(146, 181, 88, 0.83);
+    border-radius: 5px;
+}
+
+nav a:hover
+{
+color: white;
+background-color: #92B558;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
