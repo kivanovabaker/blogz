@@ -15,7 +15,7 @@
         <article>
             <h3><a href="/blog?id={{post.id}}">{{post.title}}</a></h3>
             <p>{{post.body}}</p>
-            {#<!-- <p class='byline'>Written by <a href="/blog?user_id={{user.id}}">{{user.username}}</a></p> -->#}
+            <p class='byline'>Written by <a href="/blog?user_id={{post.user_id}}">{{post.user}}</a></p>
         </article>
         {% endfor %}
     {% endif %}

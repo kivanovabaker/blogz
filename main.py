@@ -15,15 +15,22 @@ def index():
     return render_template('index.html', users=users)
 
 @app.route('/blog', methods=['GET', 'POST'])
+#TODO modify to accommodate all desired requests
 def blog():
     post_id = request.args.get('id')
     user_id = request.args.get('user_id')
+
+    #If the query parameter is an individual post
     if post_id:
         ind_post = Blog.query.filter_by(id=post_id).first()
         return render_template('ind_post.html', post=ind_post)
+
+    #If the query parameter is a user
     if user_id:
         user_posts = Blog.query.filter_by(user_id=user_id).all()
         return render_template('blog.html', title="Thoughts and Musings", posts=user_posts)
+
+    #If no parameters, display all
     posts = Blog.query.all()
     return render_template('blog.html', title = 'Thoughts and Musings', posts=posts)
 
@@ -101,6 +108,7 @@ def login():
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
 
+        #Login validation
         if not user:
             flash("Oops, this username doesn't exist")
             return redirect('/login')
