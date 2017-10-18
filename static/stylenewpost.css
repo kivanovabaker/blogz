@@ -4,7 +4,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: #100101;
+    background-color: #92B558;
   }
 
 main {
@@ -19,13 +19,17 @@ main {
 }
 
 .button {
-    font-family: font-family: 'Raleway', sans-serif;
-    color: white;
+    font-family: 'Raleway', sans-serif;
     padding: 15px 32px;
+    color: white;
     background-color: rgba(146, 181, 88, 0.83);
     border-radius: 5px;
     border: none;
     text-shadow: none;
+}
+
+.button:hover {
+    background-color: #92B558;
 }
 .error {
     color: red;
