@@ -5,10 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<header>
-    <h1>Thoughts and Musings</h1>
-</header>
 <main>
+    <h1>Thoughts and Musings</h1>
     {% if posts|length == 0 %}
     <p>No blog posts available. A blank canvas.</p>
     {% else %}
@@ -16,9 +14,11 @@
         <article>
             <h3><a href="/blog?id={{post.id}}">{{post.title}}</a></h3>
             <p>{{post.body}}</p>
-            <p class='byline'>Written by <a href="/blog?user_id={{post.user_id}}">{{post.user}}</a></p>
+            <p class='byline'><em>Written by <a href="/blog?user_id={{post.user_id}}">{{post.user}}</em></a></p>
+            <br>
         </article>
         {% endfor %}
     {% endif %}
+    <br>
 </main>
 {% endblock %}

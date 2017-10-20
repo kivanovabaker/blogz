@@ -32,8 +32,12 @@ main {
     background-color: #92B558;
 }
 .error {
-    color: red;
+    color: #c51277;
 }
 
+#flash {
+    color: #black;
+    font-weight: bold;
+}
 
 

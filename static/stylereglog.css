@@ -6,3 +6,34 @@ html {
     background-size: cover;
     background-color: #F2F4F0;
   }
+
+main {
+  padding-left: 10%;
+  padding-top: 3%;
+}
+
+.button {
+  font-family: 'Raleway', sans-serif;
+  padding: 15px 32px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.83);
+  border-radius: 5px;
+  border: none;
+  text-shadow: none;
+}
+
+.button:hover {
+  background-color: #000000;
+}
+
+#signup {
+  color: #279FC8;
+}
+
+#signup:hover {
+  color:#208EB3
+}
+
+.error {
+  color: #F13532
+}

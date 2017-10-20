@@ -6,3 +6,40 @@ html {
     background-size: cover;
     background-color: #100101;
   }
+
+main {
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 5%;
+    color: white;
+    background-color: rgba(31, 18, 9, 0.62);
+    border-radius: 5px;
+}
+
+h1 {
+    color: white;
+    padding-top: 1%;
+    padding-left: 1%;
+}
+
+article {
+    padding-left: 2%;
+}
+
+.byline {
+    font-size: 95%;
+}
+
+main a {
+    text-decoration: none;
+    color:rgba(146, 181, 88, 0.83);
+}
+
+main a:hover {
+    color:#92B558;
+}
+
+#flash {
+    color: #92B558;
+    font-weight: bold;
+}

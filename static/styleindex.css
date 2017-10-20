@@ -5,8 +5,34 @@ html {
     -o-background-size: cover;
     background-size: cover;
     background-color: #100101;
-  }
+}
 
+main {
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 5%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.50);
+    border-radius: 5px;
+}
+
+main li a {
+    text-decoration: none;
+    color:white;
+}
+
+main li a:hover {
+    color: #92B558; 
+}
+
+h1 {
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+main ul {
+    padding-left: 5%;
+}
 
 
 
