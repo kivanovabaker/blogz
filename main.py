@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db
 from models import Blog, User
+from hashutils import check_pw_hash, make_pw_hash, make_salt
 
 @app.before_request
 def require_login():
@@ -112,7 +113,7 @@ def login():
         if not user:
             flash("Oops, this username doesn't exist")
             return redirect('/login')
-        elif user.password != password:
+        elif not check_pw_hash(password, user.pw_hash):
             flash("Invalid password")
             return redirect('/login')
         else:

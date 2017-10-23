@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
 {% block style %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleblog.css') }}">
 {% endblock %}
 
 {% block content %}
-<header>
-    <h2>{{post.title}}</h2>
-</header>
 <main>
+    <h2>{{post.title}}</h2>
     <p>{{post.body}}</p>
     <p>Written by <a href="/blog?user_id={{post.user_id}}">{{post.user}}</a></p>
 </main>
