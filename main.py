@@ -16,7 +16,6 @@ def index():
     return render_template('index.html', users=users)
 
 @app.route('/blog', methods=['GET', 'POST'])
-#TODO modify to accommodate all desired requests
 def blog():
     post_id = request.args.get('id')
     user_id = request.args.get('user_id')
@@ -24,8 +23,8 @@ def blog():
     #If the query parameter is an individual post
     if post_id:
         ind_post = Blog.query.filter_by(id=post_id).first()
-        return render_template('ind_post.html', post=ind_post)
-
+        return render_template('blog.html', title="Thoughts and Musings", posts=[ind_post])
+        
     #If the query parameter is a user
     if user_id:
         user_posts = Blog.query.filter_by(user_id=user_id).all()
@@ -82,8 +81,10 @@ def signup():
         #Registration Validation
         if existing_username:
             user_error = "Oops, that username is taken. Log in or choose a different pen name"
+            username = ""
         if len(username)<3 or len(username)>40:
             user_error = "Please enter a valid username, 3 to 40 characters in length"
+            username = ""
         if len(password)<3 or len(password)>40:
             password_error = "Please enter a valid password, 3 to 40 characters in length"
         if password != verify:
@@ -91,7 +92,7 @@ def signup():
 
         if user_error or password_error or match_error:
            return render_template('signup.html', title="Sign Up", user_error=user_error, 
-            password_error=password_error, match_error=match_error)
+            password_error=password_error, match_error=match_error, username=username)
         else:
             new_user = User(username,password)
             db.session.add(new_user)
