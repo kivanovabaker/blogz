@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db
 from models import Blog, User
-from hashutils import check_pw_hash, make_pw_hash, make_salt
+from hashutils import check_pw_hash
 
 @app.before_request
 def require_login():
